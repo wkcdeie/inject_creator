@@ -1,0 +1,32 @@
+targets:
+  $default:
+    builders:
+      inject_creator_generator:
+        enabled: true
+
+builders:
+  combined_instance_builder:
+    target: ":inject_creator_generator"
+    import: 'package:inject_creator_generator/builder.dart'
+    builder_factories: [ 'combinedInstanceBuilder' ]
+    build_extensions: { '.dart': [ '.so.dart' ] }
+    auto_apply: root_package
+    build_to: source
+    runs_before: [ 'inject_creator_generator|component_instance_builder' ]
+
+  component_instance_builder:
+    target: ":inject_creator_generator"
+    import: 'package:inject_creator_generator/builder.dart'
+    builder_factories: [ 'componentBuilder' ]
+    build_extensions: { '.dart': [ '.3rd.dart' ] }
+    auto_apply: root_package
+    build_to: source
+    runs_before: [ 'inject_creator_generator|dependency_writer_builder' ]
+
+  dependency_writer_builder:
+    target: ":inject_creator_generator"
+    import: 'package:inject_creator_generator/builder.dart'
+    builder_factories: [ 'dependencyWriteBuilder' ]
+    build_extensions: { '.dart': [ '.dep.dart' ] }
+    auto_apply: root_package
+    build_to: source

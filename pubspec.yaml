@@ -1,0 +1,7 @@
+name: inject_creator
+description: inject_creator is a convenient code generator for get_it.
+version: 0.0.1
+homepage: https://github.com/wkcdeie/inject_creator
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
