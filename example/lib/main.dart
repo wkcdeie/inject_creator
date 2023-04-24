@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:inject_creator/inject_creator.dart';
+import 'main.dep.dart';
 
 @EnableInjector(allReady: true)
 void main() {
+  configDependencies();
   runApp(const MyApp());
 }
 

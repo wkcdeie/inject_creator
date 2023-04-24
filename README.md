@@ -17,6 +17,8 @@ inject_creator is a convenient code generator for `get_it`.
 
 ## Getting started
 
+### Install
+
 ```yaml
 dependencies:
   get_it: ^6.0.0
@@ -27,7 +29,39 @@ dev_dependencies:
   inject_creator_generator: any
 ```
 
-## Usage
+### Usage
+
+```dart
+import 'main.dep.dart';
+
+@EnableInjector(allReady: true)
+// or @EnableInjector(entryPoint:'initDependencies', allReady: false)
+void main() {
+  configDependencies();
+  // or initDependencies();
+  runApp(const MyApp());
+}
+```
+
+example:
+
+```dart
+import 'main.dep.dart';
+
+// sync
+getXxxx();
+
+// async
+await getSharedPreferences();
+```
+
+generate code:
+
+```shell
+flutter pub run build_runner build
+```
+
+## Example
 
 ### Singleton
 
@@ -109,7 +143,7 @@ class FactoryMethodService {
 }
 ```
 
-### Thirdparty
+### Third party
 
 ```dart
 @Component()
